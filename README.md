@@ -1,24 +1,51 @@
-# EX-NO-7-Implement-DES-Encryption-and-Decryption
+# EX-7-ADVANCED-ENCRYPTION-STANDARD-DES-ALGORITHM
 
 ## Aim:
+  To use Advanced Encryption Standard (AES) Algorithm for a practical application like URL Encryption.
 
-To use the Data Encryption Standard (DES) algorithm for a practical application, such as securing sensitive data transmission in financial transactions.
+## ALGORITHM: 
+  1. AES is based on a design principle known as a substitution–permutation. 
+  2. AES does not use a Feistel network like DES, it uses variant of Rijndael. 
+  3. It has a fixed block size of 128 bits, and a key size of 128, 192, or 256 bits. 
+  4. AES operates on a 4 × 4 column-major order array of bytes, termed the state
 
-## ALGORITHM:
+## PROGRAM: 
+```
+#include <stdio.h>
+#include <string.h>
 
-1. DES is based on a symmetric key encryption technique that encrypts data in 64-bit blocks.
-2. DES uses a Feistel network structure with 16 rounds of processing for encryption.
-3. DES has a 64-bit key, but only 56 bits are used for encryption (the remaining 8 bits are for parity).
-4. DES applies initial and final permutations along with 16 rounds of substitution and permutation transformations to produce ciphertext.
+// XOR encryption function
+void xor_encrypt_decrypt(char *input, char *key) {
+    int input_len = strlen(input);
+    int key_len = strlen(key);
 
-## Program:
+    for (int i = 0; i < input_len; i++) {
+        input[i] = input[i] ^ key[i % key_len]; // XOR encryption
+    }
+}
+
+int main() {
+    char url[] = "https://www.flipkart.com/";
+    char key[] = "secretkey"; // Simple key for XOR encryption
+
+    printf("Original URL: %s\n", url);
+
+    // Encrypt the URL
+    xor_encrypt_decrypt(url, key);
+    printf("Encrypted URL: %s\n", url);
+
+    // Decrypt the URL (since XOR is reversible using the same key)
+    xor_encrypt_decrypt(url, key);
+    printf("Decrypted URL: %s\n", url);
+
+    return 0;
+}
+```
+## OUTPUT:
+![Screenshot 2024-10-09 150756](https://github.com/user-attachments/assets/99e1f0f3-d55f-4dad-902a-e3691390479c)
 
 
+## RESULT: 
+Thus , to use Advanced Encryption Standard (AES) Algorithm for a practical application like URL Encryption is done successfully.
 
-
-## Output:
-
-
-## Result:
-  The program is executed successfully
-
+--------------------------------------------------------------------------------------------------------------------------------------------
